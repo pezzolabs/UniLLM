@@ -26,7 +26,7 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
 
   async createChatCompletionNonStreaming(
     model: ModelTypes[Providers.AzureOpenAI],
-    params: UnifiedCreateChatCompletionParamsNonStreaming<Providers.AzureOpenAI>
+    params: UnifiedCreateChatCompletionParamsNonStreaming
   ): Promise<UnifiedCreateChatCompletionNonStreamResult> {
     const { baseParams } = this.processUnifiedParamsToAzureOpenAIFormat(params);
 
@@ -40,24 +40,26 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
     );
 
     const choices: OpenAI.Chat.Completions.ChatCompletion["choices"] =
-      nativeResult.choices.map((choice) => ({
-        index: choice.index,
-        finish_reason:
-          choice.finishReason as OpenAI.Chat.Completions.ChatCompletion["choices"][0]["finish_reason"],
-        message: {
-          role: choice.message!
-            .role as OpenAI.Chat.Completions.ChatCompletion["choices"][0]["message"]["role"],
-          content: choice.message!.content,
-          function_calls: choice.message!.functionCall
-            ? choice.message!.functionCall
-            : undefined,
-        },
-      }));
+      nativeResult.choices.map(
+        (choice): OpenAI.Chat.Completions.ChatCompletion["choices"][0] => ({
+          index: choice.index,
+          finish_reason:
+            choice.finishReason as OpenAI.Chat.Completions.ChatCompletion["choices"][0]["finish_reason"],
+          message: {
+            role: choice.message!
+              .role as OpenAI.Chat.Completions.ChatCompletion["choices"][0]["message"]["role"],
+            content: choice.message!.content ?? null,
+            function_call: choice.message!.functionCall
+              ? choice.message!.functionCall
+              : undefined,
+          },
+        })
+      );
 
     const result: OpenAI.Chat.Completions.ChatCompletion = {
       id: nativeResult.id,
       choices,
-      model: "azure:openai",
+      model,
       object: "chat.completion",
       usage: {
         prompt_tokens: nativeResult.usage!.promptTokens,
@@ -72,7 +74,7 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
 
   async createChatCompletionStreaming(
     model: ModelTypes[Providers.AzureOpenAI],
-    params: UnifiedCreateChatCompletionParamsStreaming<Providers.AzureOpenAI>
+    params: UnifiedCreateChatCompletionParamsStreaming
   ): Promise<UnifiedCreateChatCompletionStreamResult> {
     const { baseParams } = this.processUnifiedParamsToAzureOpenAIFormat(params);
     const originalStreamResponse = this.client.listChatCompletions(
@@ -92,8 +94,8 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
 
   private processUnifiedParamsToAzureOpenAIFormat(
     params:
-      | UnifiedCreateChatCompletionParamsNonStreaming<Providers.AzureOpenAI>
-      | UnifiedCreateChatCompletionParamsStreaming<Providers.AzureOpenAI>
+      | UnifiedCreateChatCompletionParamsNonStreaming
+      | UnifiedCreateChatCompletionParamsStreaming
   ): { baseParams: GetChatCompletionsOptions } {
     const baseParams: GetChatCompletionsOptions = {
       maxTokens: params.max_tokens ?? undefined,

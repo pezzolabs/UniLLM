@@ -20,20 +20,20 @@ const providers: { [k: string]: new () => BaseProvider<keyof ModelTypes> } = {
 // Non-streaming version
 export function createChatCompletion(
   providerAndModel: keyof ModelParamValues,
-  params: UnifiedCreateChatCompletionParamsNonStreaming<keyof ModelTypes>
+  params: UnifiedCreateChatCompletionParamsNonStreaming
 ): Promise<UnifiedCreateChatCompletionNonStreamResult>;
 
 // Streaming version
 export function createChatCompletion(
   providerAndModel: keyof ModelParamValues,
-  params: UnifiedCreateChatCompletionParamsStreaming<keyof ModelTypes>
+  params: UnifiedCreateChatCompletionParamsStreaming
 ): Promise<UnifiedCreateChatCompletionStreamResult>;
 
 export function createChatCompletion(
   providerAndModel: keyof ModelParamValues,
   params:
-    | UnifiedCreateChatCompletionParamsNonStreaming<keyof ModelTypes>
-    | UnifiedCreateChatCompletionParamsStreaming<keyof ModelTypes>
+    | UnifiedCreateChatCompletionParamsNonStreaming
+    | UnifiedCreateChatCompletionParamsStreaming
 ):
   | Promise<UnifiedCreateChatCompletionNonStreamResult>
   | Promise<UnifiedCreateChatCompletionStreamResult> {

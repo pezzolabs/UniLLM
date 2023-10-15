@@ -1,22 +1,37 @@
 import { createChatCompletion } from "..";
-import stringify from "json-stable-stringify";
+import { describe, expect, it } from "vitest";
+import * as utils from "./utils/validation.util";
+import type { ChatCompletionChunk } from "openai/resources/chat";
+import { testParams, testFunctions } from "./utils/test-data.util";
 
-export async function test() {
-  try {
-    const response = await createChatCompletion("openai:gpt-3.5-turbo", {
-      temperature: 0,
-      messages: [
-        {
-          role: "user",
-          content: "Hey how are you?",
-        }
-      ]
+describe("#createChatCompletion - OpenAI", () => {
+  const model = "openai:gpt-3.5-turbo";
+
+  describe("Non streaming", () => {
+    it("Should return a valid chat completion response", async () => {
+      const response = await createChatCompletion(model, { ...testParams, stream: false });
+      expect(() => utils.validateOpenAIChatCompletionResponse(response)).not.toThrow();
     });
-    console.log("response", stringify(response, { space: 2 }));
-  } catch (error) {
-    console.error("error", error);
-  }
 
-}
+    it("Should return a valid function calling response", async () => {
+      const response = await createChatCompletion(model, { ...testParams, stream: false, functions: testFunctions });
+      expect(() => utils.validateOpenAIChatCompletionResponse(response)).not.toThrow();
+    });
+  });
 
-test();
+  describe("Streaming", () => {
+    it("Should return a valid iterable chat completion stream", async () => {
+      const stream = await createChatCompletion(model, { ...testParams, stream: true });
+      
+      let testChunk: ChatCompletionChunk;
+
+      for await (const chunk of stream) {
+        testChunk = chunk;
+        console.log("openai chunk", JSON.stringify(testChunk, null, 2))
+        break;
+      }
+
+      expect(() => utils.validateOpenAIChatCompletionChunk(testChunk)).not.toThrow();
+    });
+  });
+});

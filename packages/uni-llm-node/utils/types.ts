@@ -27,8 +27,9 @@ export type ModelTypes = {
   [Providers.AzureOpenAI]: string, // deployment name
 }
 
-export type UnifiedCreateChatCompletionParamsStreaming<Provider extends keyof ModelTypes> = Omit<OpenAI.Chat.Completions.ChatCompletionCreateParamsStreaming, "model">;
-export type UnifiedCreateChatCompletionParamsNonStreaming<Provider extends keyof ModelTypes> = Omit<OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming, "model">;
+export type UnifiedCreateChatCompletionParamsBase = Omit<OpenAI.Chat.Completions.ChatCompletionCreateParams, "model">;
+export type UnifiedCreateChatCompletionParamsStreaming = Omit<OpenAI.Chat.Completions.ChatCompletionCreateParamsStreaming, "model">;
+export type UnifiedCreateChatCompletionParamsNonStreaming = Omit<OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming, "model">;
 
 export type UnifiedCreateChatCompletionNonStreamResult =
   OpenAI.Chat.Completions.ChatCompletion;

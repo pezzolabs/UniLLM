@@ -20,7 +20,7 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
 
   async createChatCompletionNonStreaming(
     model: ModelTypes[Providers.Anthropic],
-    params: UnifiedCreateChatCompletionParamsNonStreaming<Providers.Anthropic>
+    params: UnifiedCreateChatCompletionParamsNonStreaming
   ): Promise<UnifiedCreateChatCompletionNonStreamResult> {
     const { baseParams, prompt } =
       this.processUnifiedParamsToAnthropicFormat(params);
@@ -74,7 +74,7 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
 
   async createChatCompletionStreaming(
     model: ModelTypes[Providers.Anthropic],
-    params: UnifiedCreateChatCompletionParamsStreaming<Providers.Anthropic>
+    params: UnifiedCreateChatCompletionParamsStreaming
   ): Promise<UnifiedCreateChatCompletionStreamResult> {
     const { baseParams } = this.processUnifiedParamsToAnthropicFormat(params);
 
@@ -90,8 +90,8 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
 
   private processUnifiedParamsToAnthropicFormat(
     params:
-      | UnifiedCreateChatCompletionParamsNonStreaming<Providers.Anthropic>
-      | UnifiedCreateChatCompletionParamsStreaming<Providers.Anthropic>
+      | UnifiedCreateChatCompletionParamsNonStreaming
+      | UnifiedCreateChatCompletionParamsStreaming
   ): { baseParams: Omit<Anthropic.CompletionCreateParams, "model">; prompt: string } {
     let prompt = params.messages.reduce((acc, message) => {
       return `${acc}${
@@ -140,7 +140,7 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
           choices: [
             {
               index: 0,
-              delta: { content: chunk.completion },
+              delta: { content: chunk.completion, role: "assistant" },
               finish_reason: this.getChunkFinishReason(chunk.stop_reason),
             },
           ],
