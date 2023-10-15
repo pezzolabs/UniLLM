@@ -1,0 +1,9 @@
+{
+  "extends": "tsconfig/base",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "target": "esnext",
+    "resolveJsonModule": true
+  }
+}

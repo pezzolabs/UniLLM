@@ -1,12 +1,11 @@
 {
-  "name": "ui",
+  "name": "uni-llm",
   "version": "0.0.0",
-  "main": "./index.tsx",
-  "types": "./index.tsx",
+  "main": "./index.ts",
+  "types": "./index.ts",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint .",
-    "generate:component": "turbo gen react-component"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@turbo/gen": "^1.10.12",
@@ -17,5 +16,12 @@
     "react": "^18.2.0",
     "tsconfig": "*",
     "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.6.2",
+    "@azure/openai": "^1.0.0-beta.6",
+    "@dqbd/tiktoken": "^1.0.7",
+    "node-fetch": "^3.3.2",
+    "openai": "^4.8.0"
   }
 }
