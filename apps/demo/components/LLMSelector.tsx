@@ -20,7 +20,7 @@ const llms: {
   },
   {
     name: "Azure OpenAI",
-    value: LLMs["azure:pezzogpt35turbo"],
+    value: LLMs["azure:gpt35turbo"],
   },
 ];
 
