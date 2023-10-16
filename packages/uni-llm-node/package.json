@@ -5,6 +5,11 @@
   "types": "./types/index.d.ts",
   "license": "MIT",
   "author": "Ariel Weinberger <ariel@pezzo.ai>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pezzolabs/Uni-LLM.git"
+  },
+  "homepage": "https://github.com/pezzolabs/Uni-LLM.git",
   "scripts": {
     "lint": "eslint .",
     "test": "vitest --coverage",
