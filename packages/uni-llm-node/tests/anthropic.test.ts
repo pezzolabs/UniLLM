@@ -1,15 +1,17 @@
-import { createChatCompletion } from "..";
+import { UniLLM } from "..";
 import { describe, expect, it } from "vitest";
 import * as utils from "./utils/validation.util";
 import type { ChatCompletionChunk } from "openai/resources/chat";
 import { testParams } from "./utils/test-data.util";
+
+const uniLLM = new UniLLM();
 
 describe("#createChatCompletion - Anthropic", () => {
   const model = "anthropic:claude-2";
 
   describe("Non streaming", () => {
     it("Should return a valid chat completion response", async () => {
-      const response = await createChatCompletion(model, {
+      const response = await uniLLM.createChatCompletion(model, {
         ...testParams,
         stream: false,
       });
@@ -21,7 +23,7 @@ describe("#createChatCompletion - Anthropic", () => {
 
   describe("Streaming", () => {
     it("Should return a valid iterable chat completion stream", async () => {
-      const response = await createChatCompletion(model, {
+      const response = await uniLLM.createChatCompletion(model, {
         ...testParams,
         stream: true,
       });
