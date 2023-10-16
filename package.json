@@ -4,8 +4,7 @@
     "build": "turbo run build",
     "dev": "dotenv -- turbo run dev",
     "lint": "turbo run lint",
-    "format": "turbo run prettier",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "turbo run prettier"
   },
   "devDependencies": {
     "@types/json-stable-stringify": "^1.0.34",
