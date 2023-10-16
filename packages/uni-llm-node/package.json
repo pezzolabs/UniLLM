@@ -1,8 +1,9 @@
 {
   "name": "uni-llm",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "main": "./index.ts",
   "types": "./types/index.d.ts",
+  "type": "commonjs",
   "license": "MIT",
   "author": "Ariel Weinberger <ariel@pezzo.ai>",
   "repository": {
@@ -18,6 +19,8 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "@turbo/gen": "^1.10.12",
     "@types/node": "^20.5.2",
     "@types/react": "^18.2.0",
@@ -40,5 +43,20 @@
     "@dqbd/tiktoken": "^1.0.7",
     "node-fetch": "^3.3.2",
     "openai": "^4.8.0"
-  }
+  },
+  "keywords": [
+    "llm",
+    "api",
+    "openai",
+    "azure",
+    "anthropic",
+    "cohere",
+    "chatgpt",
+    "promptengineering",
+    "ai",
+    "typescript",
+    "javascript",
+    "client",
+    "sdk"
+  ]
 }

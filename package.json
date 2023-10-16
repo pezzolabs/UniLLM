@@ -7,6 +7,7 @@
     "format": "turbo run format"
   },
   "devDependencies": {
+    "@rollup/plugin-wasm": "^6.2.2",
     "@types/json-stable-stringify": "^1.0.34",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.48.0",

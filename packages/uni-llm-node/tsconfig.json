@@ -3,7 +3,10 @@
   "include": ["./index.ts"],
   "exclude": ["dist", "build", "node_modules", "**/.test.ts"],
   "compilerOptions": {
+    "target": "es2015",
+    "lib": ["es2017"],
     "outDir": "./dist",
+    "moduleResolution": "node",
     "sourceMap": true,
     "declarationDir": "./dist/types",
     "resolveJsonModule": true
