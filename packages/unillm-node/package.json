@@ -1,8 +1,9 @@
 {
   "name": "unillm",
   "version": "0.1.0-alpha.1",
-  "main": "./index.ts",
-  "types": "./types/index.d.ts",
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js",
+  "types": "./types/packages/unillm-node/index.d.ts",
   "type": "commonjs",
   "license": "MIT",
   "author": "Ariel Weinberger <ariel@pezzo.ai>",
@@ -15,7 +16,7 @@
     "lint": "eslint .",
     "test": "vitest --coverage",
     "format": "prettier --write .",
-    "build": "rimraf dist && rollup -c && cp -r ./dist/types/packages/unillm-node/ ./dist/types/ && rimraf dist/types/packages"
+    "build": "rimraf dist && rollup -c"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
