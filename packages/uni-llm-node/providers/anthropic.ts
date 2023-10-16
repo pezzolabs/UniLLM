@@ -20,7 +20,7 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
 
   async createChatCompletionNonStreaming(
     model: ModelTypes[Providers.Anthropic],
-    params: UnifiedCreateChatCompletionParamsNonStreaming
+    params: UnifiedCreateChatCompletionParamsNonStreaming,
   ): Promise<UnifiedCreateChatCompletionNonStreamResult> {
     const { baseParams, prompt } =
       this.processUnifiedParamsToAnthropicFormat(params);
@@ -43,7 +43,10 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
     const choices: OpenAI.Chat.Completions.ChatCompletion.Choice[] = [
       {
         index: 0,
-        message: { role: "assistant", content: this.trimLeadingSpaces(nativeResult.completion) },
+        message: {
+          role: "assistant",
+          content: this.trimLeadingSpaces(nativeResult.completion),
+        },
         finish_reason: finishReasonMapping[nativeResult.stop_reason],
       },
     ];
@@ -51,7 +54,7 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
     const encoding = new Tiktoken(
       cl100k_base.bpe_ranks,
       cl100k_base.special_tokens,
-      cl100k_base.pat_str
+      cl100k_base.pat_str,
     );
 
     const prompt_tokens = encoding.encode(prompt).length;
@@ -74,7 +77,7 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
 
   async createChatCompletionStreaming(
     model: ModelTypes[Providers.Anthropic],
-    params: UnifiedCreateChatCompletionParamsStreaming
+    params: UnifiedCreateChatCompletionParamsStreaming,
   ): Promise<UnifiedCreateChatCompletionStreamResult> {
     const { baseParams } = this.processUnifiedParamsToAnthropicFormat(params);
 
@@ -91,8 +94,11 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
   private processUnifiedParamsToAnthropicFormat(
     params:
       | UnifiedCreateChatCompletionParamsNonStreaming
-      | UnifiedCreateChatCompletionParamsStreaming
-  ): { baseParams: Omit<Anthropic.CompletionCreateParams, "model">; prompt: string } {
+      | UnifiedCreateChatCompletionParamsStreaming,
+  ): {
+    baseParams: Omit<Anthropic.CompletionCreateParams, "model">;
+    prompt: string;
+  } {
     let prompt = params.messages.reduce((acc, message) => {
       return `${acc}${
         message.role === "user" ? "\n\nHuman" : "\n\nAssistant"
@@ -104,7 +110,7 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
     const encoding = new Tiktoken(
       cl100k_base.bpe_ranks,
       cl100k_base.special_tokens,
-      cl100k_base.pat_str
+      cl100k_base.pat_str,
     );
     encoding.free();
 
@@ -123,7 +129,7 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
   }
 
   private async parseStreamResponse(
-    stream: Stream<Anthropic.Completions.Completion>
+    stream: Stream<Anthropic.Completions.Completion>,
   ): Promise<Readable> {
     const openaiStream = new Readable({
       objectMode: true,
@@ -158,7 +164,7 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
   }
 
   private getChunkFinishReason(
-    anthropicStop: Anthropic.Completions.Completion["stop_reason"]
+    anthropicStop: Anthropic.Completions.Completion["stop_reason"],
   ): OpenAI.Chat.Completions.ChatCompletionChunk["choices"][0]["finish_reason"] {
     if (anthropicStop === null) {
       return null;

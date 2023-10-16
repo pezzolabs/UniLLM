@@ -9,29 +9,44 @@ describe("#createChatCompletion - OpenAI", () => {
 
   describe("Non streaming", () => {
     it("Should return a valid chat completion response", async () => {
-      const response = await createChatCompletion(model, { ...testParams, stream: false });
-      expect(() => utils.validateOpenAIChatCompletionResponse(response)).not.toThrow();
+      const response = await createChatCompletion(model, {
+        ...testParams,
+        stream: false,
+      });
+      expect(() =>
+        utils.validateOpenAIChatCompletionResponse(response),
+      ).not.toThrow();
     });
 
     it("Should return a valid function calling response", async () => {
-      const response = await createChatCompletion(model, { ...testParams, stream: false, functions: testFunctions });
-      expect(() => utils.validateOpenAIChatCompletionResponse(response)).not.toThrow();
+      const response = await createChatCompletion(model, {
+        ...testParams,
+        stream: false,
+        functions: testFunctions,
+      });
+      expect(() =>
+        utils.validateOpenAIChatCompletionResponse(response),
+      ).not.toThrow();
     });
   });
 
   describe("Streaming", () => {
     it("Should return a valid iterable chat completion stream", async () => {
-      const stream = await createChatCompletion(model, { ...testParams, stream: true });
-      
+      const stream = await createChatCompletion(model, {
+        ...testParams,
+        stream: true,
+      });
+
       let testChunk: ChatCompletionChunk;
 
       for await (const chunk of stream) {
         testChunk = chunk;
-        console.log("openai chunk", JSON.stringify(testChunk, null, 2))
         break;
       }
 
-      expect(() => utils.validateOpenAIChatCompletionChunk(testChunk)).not.toThrow();
+      expect(() =>
+        utils.validateOpenAIChatCompletionChunk(testChunk),
+      ).not.toThrow();
     });
   });
 });

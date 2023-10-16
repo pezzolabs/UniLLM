@@ -3,15 +3,13 @@ import type {
   ChatCompletion,
   ChatCompletionChunk,
 } from "openai/resources/chat";
-import {
-  UnifiedCreateChatCompletionNonStreamResult,
-} from "../../utils/types";
+import { UnifiedCreateChatCompletionNonStreamResult } from "../../utils/types";
 
 /**
  * Validates an object against the OpenAI ChatCompletion response schema.
  */
 export function validateOpenAIChatCompletionResponse(
-  obj: UnifiedCreateChatCompletionNonStreamResult
+  obj: UnifiedCreateChatCompletionNonStreamResult,
 ) {
   const schema: z.ZodType<ChatCompletion> = z.strictObject({
     id: z.string(),
@@ -42,9 +40,9 @@ export function validateOpenAIChatCompletionResponse(
                 name: z.string(),
               })
               .optional(),
-          })
+          }),
         ]),
-      })
+      }),
     ),
     created: z.number(),
     model: z.string(),
@@ -86,10 +84,10 @@ export function validateOpenAIChatCompletionChunk(obj: ChatCompletionChunk) {
             function_call: z.strictObject({
               arguments: z.string(),
               name: z.string(),
-            })
-          })
-        ])
-      })
+            }),
+          }),
+        ]),
+      }),
     ),
   });
 

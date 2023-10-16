@@ -21,12 +21,12 @@ import { BaseProvider } from "./baseProvider";
 export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
   private client = new OpenAIClient(
     process.env.AZURE_OPENAI_ENDPOINT as string,
-    new AzureKeyCredential(process.env.AZURE_OPENAI_API_KEY as string)
+    new AzureKeyCredential(process.env.AZURE_OPENAI_API_KEY as string),
   );
 
   async createChatCompletionNonStreaming(
     model: ModelTypes[Providers.AzureOpenAI],
-    params: UnifiedCreateChatCompletionParamsNonStreaming
+    params: UnifiedCreateChatCompletionParamsNonStreaming,
   ): Promise<UnifiedCreateChatCompletionNonStreamResult> {
     const { baseParams } = this.processUnifiedParamsToAzureOpenAIFormat(params);
 
@@ -36,7 +36,7 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
       {
         ...baseParams,
         stream: false,
-      }
+      },
     );
 
     const choices: OpenAI.Chat.Completions.ChatCompletion["choices"] =
@@ -53,7 +53,7 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
               ? choice.message!.functionCall
               : undefined,
           },
-        })
+        }),
       );
 
     const result: OpenAI.Chat.Completions.ChatCompletion = {
@@ -74,7 +74,7 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
 
   async createChatCompletionStreaming(
     model: ModelTypes[Providers.AzureOpenAI],
-    params: UnifiedCreateChatCompletionParamsStreaming
+    params: UnifiedCreateChatCompletionParamsStreaming,
   ): Promise<UnifiedCreateChatCompletionStreamResult> {
     const { baseParams } = this.processUnifiedParamsToAzureOpenAIFormat(params);
     const originalStreamResponse = this.client.listChatCompletions(
@@ -83,11 +83,11 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
       {
         ...baseParams,
         stream: true,
-      }
+      },
     );
     const stream = await this.parseStreamResponse(
       model,
-      originalStreamResponse
+      originalStreamResponse,
     );
     return stream as unknown as UnifiedCreateChatCompletionStreamResult;
   }
@@ -95,7 +95,7 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
   private processUnifiedParamsToAzureOpenAIFormat(
     params:
       | UnifiedCreateChatCompletionParamsNonStreaming
-      | UnifiedCreateChatCompletionParamsStreaming
+      | UnifiedCreateChatCompletionParamsStreaming,
   ): { baseParams: GetChatCompletionsOptions } {
     const baseParams: GetChatCompletionsOptions = {
       maxTokens: params.max_tokens ?? undefined,
@@ -113,7 +113,7 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
 
   private async parseStreamResponse(
     deployment: string,
-    stream: AsyncIterable<ChatCompletions>
+    stream: AsyncIterable<ChatCompletions>,
   ): Promise<Readable> {
     const openaiStream = new Readable({
       objectMode: true,
