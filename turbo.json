@@ -9,7 +9,9 @@
     },
     "test": {},
     "lint": {},
-    "format": {},
+    "format": {
+      "cache": false
+    },
     "dev": {
       "cache": false,
       "persistent": false
