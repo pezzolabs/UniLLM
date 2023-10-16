@@ -10,21 +10,27 @@ const uniLLM = new UniLLM();
 describe("#createChatCompletion - Azure OpenAI", () => {
   describe("Non streaming", () => {
     it("Should return a valid chat completion response", async () => {
-      const response = await uniLLM.createChatCompletion(`azure:${deployment}`, {
-        ...testParams,
-        stream: false,
-      });
+      const response = await uniLLM.createChatCompletion(
+        `azure:${deployment}`,
+        {
+          ...testParams,
+          stream: false,
+        },
+      );
       expect(() =>
         utils.validateOpenAIChatCompletionResponse(response),
       ).not.toThrow();
     });
 
     it("Should return a valid function calling response", async () => {
-      const response = await uniLLM.createChatCompletion(`azure:${deployment}`, {
-        ...testParams,
-        stream: false,
-        functions: testFunctions,
-      });
+      const response = await uniLLM.createChatCompletion(
+        `azure:${deployment}`,
+        {
+          ...testParams,
+          stream: false,
+          functions: testFunctions,
+        },
+      );
       expect(() =>
         utils.validateOpenAIChatCompletionResponse(response),
       ).not.toThrow();
