@@ -27,7 +27,6 @@ jobs:
         with:
           fetch-depth: 0
 
-
       - name: Cache node modules
         id: cache
         uses: actions/cache@v3
@@ -61,6 +60,6 @@ jobs:
           AZURE_OPENAI_DEPLOYMENT: ${{ secrets.AZURE_OPENAI_DEPLOYMENT }}
 
       #   - name: Build
-        # run: |
-        #   npx nx graphql:generate --skip-nx-cache
-        #   npx nx run-many --target=build --all --parallel --maxParallel=3
+      # run: |
+      #   npx nx graphql:generate --skip-nx-cache
+      #   npx nx run-many --target=build --all --parallel --maxParallel=3

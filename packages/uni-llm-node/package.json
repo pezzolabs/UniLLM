@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "vitest --coverage",
-    "prettier": "prettier --write ."
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@turbo/gen": "^1.10.12",

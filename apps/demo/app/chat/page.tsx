@@ -3,10 +3,7 @@
 import { LLMSelector } from "@/components/LLMSelector";
 import { LLMs } from "@/utils/types";
 import { Message } from "../../components/Message";
-import {
-  ChatBubbleIcon,
-  PaperPlaneIcon,
-} from "@radix-ui/react-icons";
+import { ChatBubbleIcon, PaperPlaneIcon } from "@radix-ui/react-icons";
 import { Heading, IconButton, TextField } from "@radix-ui/themes";
 import { useChat } from "ai/react";
 import { useEffect, useRef, useState } from "react";
@@ -37,9 +34,7 @@ export default function ChatPage() {
     <main className="h-full overflow-hidden">
       <div className="h-full flex-col rounded-lg shadow-lg flex bg-neutral-100 bg-opacity-10 ">
         <div className="grid grid-flow-row-dense grid-cols-12 gap-4 h-14 items-center justify-center ">
-          <div className="col-span-2 pl-4 pt-1">
-  
-          </div>
+          <div className="col-span-2 pl-4 pt-1"></div>
           <div className="flex-1 text-center col-span-8">
             <Heading size="3">
               <LLMSelector value={llm} onChange={(value) => setLLM(value)} />

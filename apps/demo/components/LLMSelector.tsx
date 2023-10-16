@@ -31,10 +31,7 @@ type Props = {
 
 export const LLMSelector = ({ onChange, value }: Props) => {
   return (
-    <Select.Root
-      value={value}
-      onValueChange={(value) => onChange(value)}
-    >
+    <Select.Root value={value} onValueChange={(value) => onChange(value)}>
       <Select.Trigger />
       <Select.Content>
         <Select.Group>

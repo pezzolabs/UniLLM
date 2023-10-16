@@ -8,7 +8,7 @@
     },
     "test": {},
     "lint": {},
-    "prettier": {},
+    "format": {},
     "dev": {
       "cache": false,
       "persistent": true
