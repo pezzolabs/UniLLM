@@ -9,11 +9,11 @@ import {
 export abstract class BaseProvider<Provider extends keyof ModelTypes> {
   abstract createChatCompletionNonStreaming(
     model: ModelTypes[Provider],
-    params: UnifiedCreateChatCompletionParamsNonStreaming
+    params: UnifiedCreateChatCompletionParamsNonStreaming,
   ): Promise<UnifiedCreateChatCompletionNonStreamResult>;
 
   abstract createChatCompletionStreaming(
     model: ModelTypes[Provider],
-    params: UnifiedCreateChatCompletionParamsStreaming
+    params: UnifiedCreateChatCompletionParamsStreaming,
   ): Promise<UnifiedCreateChatCompletionStreamResult>;
 }

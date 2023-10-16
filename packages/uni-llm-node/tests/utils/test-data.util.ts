@@ -7,26 +7,27 @@ export const testParams: UnifiedCreateChatCompletionParamsBase = {
     {
       role: "user",
       content: "How much is 2+2?",
-    }
+    },
   ],
 };
 
-export const testFunctions: UnifiedCreateChatCompletionParamsBase["functions"] = [
-  {
-    name: "add",
-    description: "Adds two numbers",
-    parameters: {
-      type: "object",
-      properties: {
-        num1: {
-          type: "number",
-          description: "First number to add"
+export const testFunctions: UnifiedCreateChatCompletionParamsBase["functions"] =
+  [
+    {
+      name: "add",
+      description: "Adds two numbers",
+      parameters: {
+        type: "object",
+        properties: {
+          num1: {
+            type: "number",
+            description: "First number to add",
+          },
+          num2: {
+            type: "number",
+            description: "Second number to add",
+          },
         },
-        num2: {
-          type: "number",
-          description: "Second number to add"
-        }
-      }
-    }
-  }
-];
+      },
+    },
+  ];

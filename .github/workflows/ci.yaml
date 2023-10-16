@@ -5,18 +5,22 @@ on:
   pull_request:
     branches:
       - "*"
-  paths-ignore:
-    - "**/*.md"
-    - "docs"
+    paths-ignore:
+      - "**/*.md"
+      - "docs"
   push:
     branches:
       - "*"
+    paths-ignore:
+      - "**/*.md"
+      - "docs"
 
 jobs:
   ci:
     name: Continuous Integration
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       packages: write
     steps:
       - uses: actions/checkout@v3
@@ -40,16 +44,20 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      # - name: Check Formatting
-      #   run: npx nx format:check --all --verbose
+      - name: Check Formatting
+        run: npx prettier . --check
 
-      # - name: Lint
-      #   run: npx nx run-many --target=lint --all --parallel --maxParallel=3
+      - name: Lint
+        run: npx turbo run lint
 
       - name: Test
         run: npx turbo run test
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+          AZURE_OPENAI_DEPLOYMENT: ${{ secrets.AZURE_OPENAI_DEPLOYMENT }}
 
-      #   - name: Build
-        # run: |
-        #   npx nx graphql:generate --skip-nx-cache
-        #   npx nx run-many --target=build --all --parallel --maxParallel=3
+      - name: Build
+        run: npx turbo run build

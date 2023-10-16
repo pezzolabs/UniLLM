@@ -17,40 +17,44 @@ const providers: { [k: string]: new () => BaseProvider<keyof ModelTypes> } = {
   azure: AzureOpenAIProvider,
 };
 
-// Non-streaming version
-export function createChatCompletion(
-  providerAndModel: keyof ModelParamValues,
-  params: UnifiedCreateChatCompletionParamsNonStreaming
-): Promise<UnifiedCreateChatCompletionNonStreamResult>;
+export class UniLLM {
+  // Non-streaming version
+  public createChatCompletion(
+    providerAndModel: keyof ModelParamValues,
+    params: UnifiedCreateChatCompletionParamsNonStreaming,
+  ): Promise<UnifiedCreateChatCompletionNonStreamResult>;
 
-// Streaming version
-export function createChatCompletion(
-  providerAndModel: keyof ModelParamValues,
-  params: UnifiedCreateChatCompletionParamsStreaming
-): Promise<UnifiedCreateChatCompletionStreamResult>;
+  // Streaming version
+  public createChatCompletion(
+    providerAndModel: keyof ModelParamValues,
+    params: UnifiedCreateChatCompletionParamsStreaming,
+  ): Promise<UnifiedCreateChatCompletionStreamResult>;
 
-export function createChatCompletion(
-  providerAndModel: keyof ModelParamValues,
-  params:
-    | UnifiedCreateChatCompletionParamsNonStreaming
-    | UnifiedCreateChatCompletionParamsStreaming
-):
-  | Promise<UnifiedCreateChatCompletionNonStreamResult>
-  | Promise<UnifiedCreateChatCompletionStreamResult> {
-  const [providerName, model] = providerAndModel.split(":");
-  const provider = providers[providerName];
+  public createChatCompletion(
+    providerAndModel: keyof ModelParamValues,
+    params:
+      | UnifiedCreateChatCompletionParamsNonStreaming
+      | UnifiedCreateChatCompletionParamsStreaming,
+  ):
+    | Promise<UnifiedCreateChatCompletionNonStreamResult>
+    | Promise<UnifiedCreateChatCompletionStreamResult> {
+    const [providerName, model] = providerAndModel.split(":");
+    const provider = providers[providerName];
 
-  if (!provider) {
-    throw new Error(`Invalid provider provided - "${providerName}"`);
-  }
+    if (!provider) {
+      throw new Error(`Invalid provider provided - "${providerName}"`);
+    }
 
-  const providerInstance = new provider();
+    const providerInstance = new provider();
 
-  if (params.stream === true) {
-    return providerInstance.createChatCompletionStreaming(model, { ...params });
-  } else {
-    return providerInstance.createChatCompletionNonStreaming(model, {
-      ...params,
-    });
+    if (params.stream === true) {
+      return providerInstance.createChatCompletionStreaming(model, {
+        ...params,
+      });
+    } else {
+      return providerInstance.createChatCompletionNonStreaming(model, {
+        ...params,
+      });
+    }
   }
 }

@@ -14,7 +14,7 @@ export class OpenAIProvider extends BaseProvider<Providers.OpenAI> {
 
   async createChatCompletionNonStreaming(
     model: ModelTypes[Providers.OpenAI],
-    params: UnifiedCreateChatCompletionParamsNonStreaming
+    params: UnifiedCreateChatCompletionParamsNonStreaming,
   ): Promise<UnifiedCreateChatCompletionNonStreamResult> {
     const response = await this.openai.chat.completions.create({
       ...params,
@@ -27,7 +27,7 @@ export class OpenAIProvider extends BaseProvider<Providers.OpenAI> {
 
   async createChatCompletionStreaming(
     model: ModelTypes[Providers.OpenAI],
-    params: UnifiedCreateChatCompletionParamsStreaming
+    params: UnifiedCreateChatCompletionParamsStreaming,
   ): Promise<UnifiedCreateChatCompletionStreamResult> {
     const stream = await this.openai.chat.completions.create({
       ...params,

@@ -1,10 +1,14 @@
 {
   "extends": "tsconfig/base",
-  "include": ["."],
-  "exclude": ["dist", "build", "node_modules"],
+  "include": ["./index.ts"],
+  "exclude": ["dist", "build", "node_modules", "**/.test.ts"],
   "compilerOptions": {
-    "strict": true,
-    "target": "esnext",
+    "target": "es2015",
+    "lib": ["es2017"],
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declarationDir": "./dist/types",
     "resolveJsonModule": true
   }
 }
