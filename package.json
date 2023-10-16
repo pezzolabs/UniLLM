@@ -2,12 +2,13 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "dotenv -- turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@types/json-stable-stringify": "^1.0.34",
+    "dotenv-cli": "^7.3.0",
     "eslint": "^8.48.0",
     "prettier": "^3.0.3",
     "tsconfig": "*",
