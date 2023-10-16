@@ -1,10 +1,9 @@
-
 const path = require("path");
 const commonjs = require("@rollup/plugin-commonjs");
 const typescript2 = require("rollup-plugin-typescript2");
 const copy = require("rollup-plugin-copy");
 
-const { defineConfig } = require('rollup');
+const { defineConfig } = require("rollup");
 
 module.exports = defineConfig({
   input: "./index.ts",
@@ -23,17 +22,17 @@ module.exports = defineConfig({
       targets: [
         {
           src: path.resolve(__dirname, "package.json"),
-          dest: "./dist"
+          dest: "./dist",
         },
         {
           src: path.resolve(__dirname, "../../", "README.md"),
-          dest: "./dist"
+          dest: "./dist",
         },
         {
           src: path.resolve(__dirname, "../../", "LICENSE"),
-          dest: "./dist"
-        }
-      ]
+          dest: "./dist",
+        },
+      ],
     }),
-  ]
+  ],
 });

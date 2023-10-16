@@ -4,7 +4,7 @@
     "build": "turbo run build",
     "dev": "dotenv -- turbo run dev",
     "lint": "turbo run lint",
-    "format": "turbo run prettier"
+    "format": "turbo run format"
   },
   "devDependencies": {
     "@types/json-stable-stringify": "^1.0.34",
