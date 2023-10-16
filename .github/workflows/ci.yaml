@@ -44,8 +44,8 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      # - name: Check Formatting
-      #   run: npx nx format:check --all --verbose
+      - name: Check Formatting
+        run: npx prettier . --check
 
       # - name: Lint
       #   run: npx nx run-many --target=lint --all --parallel --maxParallel=3
