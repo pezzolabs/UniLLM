@@ -21,7 +21,7 @@ import { BaseProvider } from "./baseProvider";
 export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
   private client = new OpenAIClient(
     process.env.AZURE_OPENAI_ENDPOINT as string,
-    new AzureKeyCredential(process.env.AZURE_OPENAI_KEY as string)
+    new AzureKeyCredential(process.env.AZURE_OPENAI_API_KEY as string)
   );
 
   async createChatCompletionNonStreaming(
