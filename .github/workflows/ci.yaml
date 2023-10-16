@@ -59,7 +59,5 @@ jobs:
           AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
           AZURE_OPENAI_DEPLOYMENT: ${{ secrets.AZURE_OPENAI_DEPLOYMENT }}
 
-      #   - name: Build
-      # run: |
-      #   npx nx graphql:generate --skip-nx-cache
-      #   npx nx run-many --target=build --all --parallel --maxParallel=3
+      - name: Build
+        run: npx turbo run build
