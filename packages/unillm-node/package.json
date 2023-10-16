@@ -1,8 +1,7 @@
 {
   "name": "unillm",
   "version": "0.1.0-alpha.1",
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js",
+  "main": "./index.ts",
   "types": "./types/packages/unillm-node/index.d.ts",
   "type": "commonjs",
   "license": "MIT",
