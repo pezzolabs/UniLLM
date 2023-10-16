@@ -5,12 +5,15 @@ on:
   pull_request:
     branches:
       - "*"
-  paths-ignore:
-    - "**/*.md"
-    - "docs"
+    paths-ignore:
+      - "**/*.md"
+      - "docs"
   push:
     branches:
       - "*"
+    paths-ignore:
+      - "**/*.md"
+      - "docs"
 
 jobs:
   ci:
