@@ -14,7 +14,7 @@ module.exports = defineConfig({
     {
       format: "cjs",
       dir: "./dist",
-      name: "uni-llm-node",
+      name: "unillm-node",
       entryFileNames: "[name].cjs.js",
       chunkFileNames: "[name]-[hash].cjs.js",
       sourcemap: true,
@@ -22,7 +22,7 @@ module.exports = defineConfig({
     {
       format: "esm",
       dir: "./dist",
-      name: "uni-llm-node",
+      name: "unillm-node",
       entryFileNames: "[name].esm.js",
       chunkFileNames: "[name]-[hash].esm.js",
       sourcemap: true,

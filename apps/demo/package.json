@@ -21,7 +21,7 @@
     "openai": "^4.10.0",
     "react": "^18",
     "react-dom": "^18",
-    "uni-llm": "*"
+    "unillm": "*"
   },
   "devDependencies": {
     "@types/node": "^20",

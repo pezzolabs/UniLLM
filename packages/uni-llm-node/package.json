@@ -1,5 +1,5 @@
 {
-  "name": "uni-llm",
+  "name": "unillm",
   "version": "0.1.0-alpha.1",
   "main": "./index.ts",
   "types": "./types/index.d.ts",
@@ -8,14 +8,14 @@
   "author": "Ariel Weinberger <ariel@pezzo.ai>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pezzolabs/Uni-LLM.git"
+    "url": "https://github.com/pezzolabs/UniLLM.git"
   },
-  "homepage": "https://github.com/pezzolabs/Uni-LLM.git",
+  "homepage": "https://github.com/pezzolabs/UniLLM.git",
   "scripts": {
     "lint": "eslint .",
     "test": "vitest --coverage",
     "format": "prettier --write .",
-    "build": "rimraf dist && rollup -c && cp -r ./dist/types/packages/uni-llm-node/ ./dist/types/ && rimraf dist/types/packages"
+    "build": "rimraf dist && rollup -c && cp -r ./dist/types/packages/unillm-node/ ./dist/types/ && rimraf dist/types/packages"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",

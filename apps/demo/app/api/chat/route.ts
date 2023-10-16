@@ -1,5 +1,5 @@
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import { UniLLM } from "uni-llm";
+import { UniLLM } from "unillm";
 
 export async function POST(req: Request) {
   const { messages, llm } = await req.json();
