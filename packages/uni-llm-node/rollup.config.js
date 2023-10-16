@@ -2,7 +2,7 @@ const path = require("path");
 const commonjs = require("@rollup/plugin-commonjs");
 const typescript2 = require("rollup-plugin-typescript2");
 const copy = require("rollup-plugin-copy");
-const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const { nodeResolve } = require("@rollup/plugin-node-resolve");
 const json = require("@rollup/plugin-json");
 const { wasm } = require("@rollup/plugin-wasm");
 
@@ -26,7 +26,7 @@ module.exports = defineConfig({
       entryFileNames: "[name].esm.js",
       chunkFileNames: "[name]-[hash].esm.js",
       sourcemap: true,
-    }
+    },
   ],
   plugins: [
     nodeResolve(),

@@ -1,10 +1,12 @@
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import * as UniLLM from "uni-llm";
+import { UniLLM } from "uni-llm";
 
 export async function POST(req: Request) {
   const { messages, llm } = await req.json();
 
-  const response = await UniLLM.createChatCompletion(llm, {
+  const uniLLM = new UniLLM();
+
+  const response = await uniLLM.createChatCompletion(llm, {
     temperature: 0,
     max_tokens: 500,
     messages: [...messages],
