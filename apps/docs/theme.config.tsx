@@ -16,6 +16,9 @@ const config: DocsThemeConfig = {
     text: 'UniLLM',
   },
   darkMode: true,
+  nextThemes: {
+    defaultTheme: "dark",
+  },
   themeSwitch: {
     component: false,
   },
