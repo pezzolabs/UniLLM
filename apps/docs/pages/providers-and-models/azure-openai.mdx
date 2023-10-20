@@ -1,0 +1,38 @@
+import { DynamicCodeExample } from "../../components/DynamicCodeExample";
+
+# Azure OpenAI
+
+## Before you start
+
+1. Head over to [Azure OpenAI](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/OpenAI) and create an instance if you don't have one.
+2. Create a new *model deployment* on Azure AI and configure it as you wish.
+3. Set the following environment variables: 
+  - `AZURE_OPENAI_ENDPOINT`   - your Azure OpenAI endpoint
+  - `AZURE_OPENAI_API_KEY`    - your Azure OpenAI API key
+  - `AZURE_OPENAI_DEPLOYMENT` - your Azure OpenAI deployment name
+
+## Usage
+
+<DynamicCodeExample defaultLLM="azure:openai" allowedProvider="azure">
+```ts copy
+import { UniLLM } from 'unillm';
+
+/*
+  #SETUP#
+*/
+
+// Setup UniLLM
+const uniLLM = new UniLLM();
+
+// Use any LLM provider and model
+const response = await uniLLM.createChatCompletion("#MODEL#", {
+  temperature: 0,
+  messages: [
+    {
+      role: "user",
+      content: "How are you?"
+    }
+  ]
+})
+```
+</DynamicCodeExample>

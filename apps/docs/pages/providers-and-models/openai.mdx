@@ -1,0 +1,34 @@
+import { DynamicCodeExample } from "../../components/DynamicCodeExample";
+
+# OpenAI
+
+## Before you start
+
+1. Obtain an OpenAI API key [here](https://platform.openai.com/account/api-keys).
+2. Make sure the `OPENAI_API_KEY` environment variable is set.
+
+## Usage
+
+<DynamicCodeExample defaultLLM="openai:gpt-3.5-turbo" allowedProvider="openai">
+```ts copy
+import { UniLLM } from 'unillm';
+
+/*
+  #SETUP#
+*/
+
+// Setup UniLLM
+const uniLLM = new UniLLM();
+
+// Use any LLM provider and model
+const response = await uniLLM.createChatCompletion("#MODEL#", {
+  temperature: 0,
+  messages: [
+    {
+      role: "user",
+      content: "How are you?"
+    }
+  ]
+})
+```
+</DynamicCodeExample>

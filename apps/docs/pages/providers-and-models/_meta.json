@@ -1,0 +1,11 @@
+{
+  "openai": {
+    "title": "OpenAI"
+  },
+  "anthropic": {
+    "title": "Anthropic"
+  },
+  "azure-openai": {
+    "title": "Azure OpenAI"
+  }
+}

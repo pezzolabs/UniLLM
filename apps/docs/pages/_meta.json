@@ -1,0 +1,10 @@
+{
+  "index": {
+    "title": "Getting Started",
+    "icon": "fa fa-home"
+  },
+  "providers-and-models": {
+    "title": "Providers & Models",
+    "icon": "fa fa-home"
+  }
+}

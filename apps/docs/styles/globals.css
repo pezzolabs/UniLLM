@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dynamic-code-example {
+  .nextra-code-block {
+    @apply bg-stone-900;
+
+    pre {
+      @apply rounded-none;
+      @apply mb-0;
+    }
+  }
+}
+
+article {
+  h1, h2, h3, h4, h5, h6 {
+    @apply border-none;
+  }
+}

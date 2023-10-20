@@ -1,0 +1,34 @@
+import { DynamicCodeExample } from "../../components/DynamicCodeExample";
+
+# Anthropic
+
+## Before you start
+
+1. Obtain an Anthropic API key [here](https://console.anthropic.com/account/keys).
+2. Make sure the `ANTHROPIC_API_KEY` environment variable is set.
+
+## Usage
+
+<DynamicCodeExample defaultLLM="anthropic:claude-2" allowedProvider="anthropic">
+```ts copy
+import { UniLLM } from 'unillm';
+
+/*
+  #SETUP#
+*/
+
+// Setup UniLLM
+const uniLLM = new UniLLM();
+
+// Use any LLM provider and model
+const response = await uniLLM.createChatCompletion("#MODEL#", {
+  temperature: 0,
+  messages: [
+    {
+      role: "user",
+      content: "How are you?"
+    }
+  ]
+})
+```
+</DynamicCodeExample>

@@ -1,0 +1,71 @@
+import { Card, Cards, Steps } from 'nextra/components'
+import { DynamicCodeExample } from '../components/DynamicCodeExample'
+
+# What is UniLLM?
+
+UniLLM is an TypeScript library that enables you to interact with any LLM (Large Language Model) via a unified API - the OpenAI API, in a type-safe way.
+
+## Benefits
+- ✨ Integrate with any provider and model using a unified interface (OpenAI)
+- 🔁 Seamlessly switch between LLMs without rewriting your codebase
+- ✅ If you write tests for your service, you only need to test it once
+- 🔎 Seamless integration with monitoring and observability tools
+- ⏩ Seamless integration with A/B testing tools without requiring a full release cycle
+- 💬 Consistent chatCompletion responses and logs across all models and providers
+- 🔜 (Coming Soon) Request caching and rate limiting
+- 🔜 (Coming Soon) Cost monitoring and alerting
+
+## Getting Started
+
+<Steps>
+
+### Install UniLLM
+```bash
+npm i unillm
+```
+
+### Make an API call
+<DynamicCodeExample>
+```ts {10} copy
+import { UniLLM } from 'unillm';
+
+/*
+  #SETUP#
+*/
+
+// Setup UniLLM
+const uniLLM = new UniLLM();
+
+// Use any LLM provider and model
+const response = await uniLLM.createChatCompletion("#MODEL#", {
+  temperature: 0,
+  messages: [
+    {
+      role: "user",
+      content: "How are you?"
+    }
+  ]
+})
+```
+</DynamicCodeExample>
+
+</Steps>
+
+
+## Supported Providers & Models
+
+Below is a list of models that are currently supported by UniLLM. If you would like to see a model added to the roadmap, [please open an issue on GitHub](https://github.com/pezzolabs/UniLLM).
+
+| **Provider/LLM**                    | **Chat Completions**  | **Streaming**  |
+|----------------------------|-----------------------|----------------|
+| OpenAI `gpt-3.5-turbo`       | ✅                    | ✅              |  
+| OpenAI `gpt-4`               | ✅                    | ✅              |  
+| Anthropic `claude-2`         | ✅                    | ✅              |  
+| Anthropic `claude-instant-1` | ✅                    | ✅              |  
+| Azure OpenAI (all models)    | ✅                    | ✅              |  
+| Llama 2                      | 🚧 Coming Soon        | 🚧 Coming Soon  |  
+| Falcon                       | 🚧 Coming Soon        | 🚧 Coming Soon  |  
+| Mistral                      | 🚧 Coming Soon        | 🚧 Coming Soon  |  
+| AWS Bedrock                  | 🚧 Coming Soon        | 🚧 Coming Soon  |  
+| AI21                         | 🚧 Coming Soon        | 🚧 Coming Soon  |  
+| Huggingface                  | 🚧 Coming Soon        | 🚧 Coming Soon  |  
