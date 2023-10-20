@@ -68,7 +68,7 @@ type Props = {
   allowedProvider?: string;
 }
 
-export function DynamicCodeExample({ children, defaultLLM, allowedProvider = null }: Props) {
+export function DynamicCodeExample({ children, defaultLLM, allowedProvider }: Props) {
   const ref = useRef<any>();
   const setupRef = useRef<any>();
   const modelRef = useRef<any>();

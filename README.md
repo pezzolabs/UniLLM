@@ -38,7 +38,7 @@
 
 # Usage
 
-## [Check our interactive documentation](https://docs.unillm.ai)
+## [✨ Check our interactive documentation ✨](https://docs.unillm.ai)
 
 ## 💬 Chat Completions
 
