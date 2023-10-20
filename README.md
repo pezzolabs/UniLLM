@@ -1,81 +1,95 @@
-# Turborepo starter
+<p align="center">
+  <h1 align="center">
+  <a href="https://docs.unillm.ai/#gh-light-mode-only" target="_blank">
+    <img src=".github/assets/logo-light-mode.svg" alt="logo" width="280">
+  </a>
 
-This is an official starter Turborepo.
+  <a href="https://docs.unillm.ai/#gh-dark-mode-only" target="_blank">
+    <img src=".github/assets/logo-dark-mode.svg" alt="logo" width="280">
+  </a>
+  </h1>
+</p>
 
-## Using this example
+<p align="center">
+  <strong>UniLLM is a library that allows you to call any LLM using the OpenAI API, with 100% type safety.</strong>
+</p>
 
-Run the following command:
+<p align="center">
+<img src="https://github.com/pezzolabs/pezzo/actions/workflows/ci.yaml/badge.svg" />
+<a href="CODE_OF_CONDUCT.md">
+  <img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Contributor Covenant">
+</a>
+<a href="https://opensource.org/licenses/MIT">
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
+</a>
+<a href="https://www.npmjs.com/package/unillm" target="_blank">
+  <img src="https://img.shields.io/badge/npm-@pezzo/client-green">
+</a>
+</p>
 
-```sh
-npx create-turbo@latest
+# Benefits
+- ✨ Integrate with any provider and model using the OpenAI API
+- 💬 Consistent chatCompletion responses and logs across all models and providers
+- 💯 Type safety across all providers and models
+- 🔁 Seamlessly switch between LLMs without rewriting your codebase
+- ✅ If you write tests for your service, you only need to test it once
+- 🔜 (Coming Soon) Request caching and rate limiting
+- 🔜 (Coming Soon) Cost monitoring and alerting
+
+# Usage
+
+## [Check our interactive documentation](https://docs.unillm.ai)
+
+## 💬 Chat Completions
+
+With UniLLM, you can use chat completions even for providers/models that don't natively support it (e.g. Anthropic).
+
+
+```bash
+npm i unillm
 ```
 
-## What's inside?
+```ts
+import { UniLLM } from 'unillm';
 
-This Turborepo includes the following packages/apps:
+const uniLLM = new UniLLM();
 
-### Apps and Packages
+// OpenAI
+const response = await uniLLM.createChatCompletion("openai:gpt-3.5-turbo", { messages: ... });
+const response = await uniLLM.createChatCompletion("openai:gpt-4", { messages: ... });
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+// Anthropic
+const response = await uniLLM.createChatCompletion("anthropic:claude-2", { messages: ... });
+const response = await uniLLM.createChatCompletion("anthropic:claude-1-instant", { messages: ... });
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+// Azure OpenAI
+const response = await uniLLM.createChatCompletion("azure:openai", { messages: ... });
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
+// More coming soon!
 ```
-cd my-turborepo
-pnpm build
-```
+Want to see more examples? Check out the **[interactive docs](https://docs.unillm.ai)**.
 
-### Develop
 
-To develop all apps and packages, run the following command:
+## ⚡️ Streaming
 
-```
-cd my-turborepo
-pnpm dev
+To enable streaming, simply provide `stream: true` in the options object. Here is an example:
+```ts
+const response = await uniLLM.createChatCompletion("openai:gpt-3.5-turbo", {
+  messages: ...,
+  stream: true
+});
 ```
 
-### Remote Caching
+Want to see more examples? Check out the **[interactive docs](https://docs.unillm.ai)**.
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+# Contributing
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+We welcome contributions from the community! Please feel free to submit pull requests or create issues for bugs or feature suggestions.
 
-```
-cd my-turborepo
-npx turbo login
-```
+If you want to contribute but not sure how, join our [Discord](https://pezzo.cc/discord) and we'll be happy to help you out!
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+Please check out [CONTRIBUTING.md](CONTRIBUTING.md) before contributing.
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+# License
 
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+This repository's source code is available under the [MIT](LICENSE).
