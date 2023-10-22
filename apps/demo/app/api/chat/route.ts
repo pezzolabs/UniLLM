@@ -4,9 +4,9 @@ import { UniLLM } from "unillm";
 export async function POST(req: Request) {
   const { messages, llm } = await req.json();
 
-  const uniLLM = new UniLLM();
+  const unillm = new UniLLM();
 
-  const response = await uniLLM.createChatCompletion(llm, {
+  const response = await unillm.createChatCompletion(llm, {
     temperature: 0,
     max_tokens: 500,
     messages: [...messages],

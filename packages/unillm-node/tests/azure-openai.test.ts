@@ -5,12 +5,12 @@ import type { ChatCompletionChunk } from "openai/resources/chat";
 import { testFunctions, testParams } from "./utils/test-data.util";
 
 const deployment = process.env.AZURE_OPENAI_DEPLOYMENT;
-const uniLLM = new UniLLM();
+const unillm = new UniLLM();
 
 describe("#createChatCompletion - Azure OpenAI", () => {
   describe("Non streaming", () => {
     it("Should return a valid chat completion response", async () => {
-      const response = await uniLLM.createChatCompletion(
+      const response = await unillm.createChatCompletion(
         `azure/openai/${deployment}`,
         {
           ...testParams,
@@ -23,7 +23,7 @@ describe("#createChatCompletion - Azure OpenAI", () => {
     });
 
     it("Should return a valid function calling response", async () => {
-      const response = await uniLLM.createChatCompletion(
+      const response = await unillm.createChatCompletion(
         `azure/openai/${deployment}`,
         {
           ...testParams,
@@ -39,7 +39,7 @@ describe("#createChatCompletion - Azure OpenAI", () => {
     it("Should throw an error and return a unified error response", async () => {
       let errorOccurred = false;
       try {
-        await uniLLM.createChatCompletion(`azure/openai/${deployment}`, {
+        await unillm.createChatCompletion(`azure/openai/${deployment}`, {
           ...testParams,
           stream: false,
           messages: [],
@@ -56,7 +56,7 @@ describe("#createChatCompletion - Azure OpenAI", () => {
 
   describe("Streaming", () => {
     it("Should return a valid iterable chat completion stream", async () => {
-      const stream = await uniLLM.createChatCompletion(
+      const stream = await unillm.createChatCompletion(
         `azure/openai/${deployment}`,
         {
           ...testParams,

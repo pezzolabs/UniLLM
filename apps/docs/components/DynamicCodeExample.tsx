@@ -47,7 +47,7 @@ export const getSelectContent = (allowedProvider?) => {
              </Select.Label>
           
           {models.map(({ name, value }) => (
-           <Select.Item value={value}>
+           <Select.Item key={value} value={value}>
             <div className="flex items-center justify-center">
 
             <Image className="mr-2 rounded-sm" src={logo} width={20} height={20} alt={providerName} />

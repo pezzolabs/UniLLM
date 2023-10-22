@@ -18,10 +18,10 @@ import { UniLLM } from 'unillm';
 */
 
 // Setup UniLLM
-const uniLLM = new UniLLM();
+const unillm = new UniLLM();
 
 // Use any LLM provider and model
-const response = await uniLLM.createChatCompletion("#MODEL#", {
+const response = await unillm.createChatCompletion("#MODEL#", {
   temperature: 0,
   messages: [
     {

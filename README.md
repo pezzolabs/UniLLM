@@ -3,10 +3,6 @@
   <a href="https://docs.unillm.ai/#gh-light-mode-only" target="_blank">
     <img src=".github/assets/logo-light-mode.svg" alt="logo" width="280">
   </a>
-
-  <a href="https://docs.unillm.ai/#gh-dark-mode-only" target="_blank">
-    <img src=".github/assets/logo-dark-mode.svg" alt="logo" width="280">
-  </a>
   </h1>
 </p>
 
@@ -15,7 +11,7 @@
 </p>
 
 <p align="center">
-<img src="https://github.com/pezzolabs/pezzo/actions/workflows/ci.yaml/badge.svg" />
+<img src="https://github.com/pezzolabs/unillm/actions/workflows/ci.yaml/badge.svg" />
 <a href="CODE_OF_CONDUCT.md">
   <img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Contributor Covenant">
 </a>
@@ -23,7 +19,7 @@
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
 </a>
 <a href="https://www.npmjs.com/package/unillm" target="_blank">
-  <img src="https://img.shields.io/badge/npm-@pezzo/client-green">
+  <img src="https://img.shields.io/badge/npm-unillm-green">
 </a>
 </p>
 
@@ -52,18 +48,18 @@ npm i unillm
 ```ts
 import { UniLLM } from 'unillm';
 
-const uniLLM = new UniLLM();
+const unillm = new UniLLM();
 
 // OpenAI
-const response = await uniLLM.createChatCompletion("openai/gpt-3.5-turbo", { messages: ... });
-const response = await uniLLM.createChatCompletion("openai/gpt-4", { messages: ... });
+const response = await unillm.createChatCompletion("openai/gpt-3.5-turbo", { messages: ... });
+const response = await unillm.createChatCompletion("openai/gpt-4", { messages: ... });
 
 // Anthropic
-const response = await uniLLM.createChatCompletion("anthropic/claude-2", { messages: ... });
-const response = await uniLLM.createChatCompletion("anthropic/claude-1-instant", { messages: ... });
+const response = await unillm.createChatCompletion("anthropic/claude-2", { messages: ... });
+const response = await unillm.createChatCompletion("anthropic/claude-1-instant", { messages: ... });
 
 // Azure OpenAI
-const response = await uniLLM.createChatCompletion("azure/openai/<deployment-name>", { messages: ... });
+const response = await unillm.createChatCompletion("azure/openai/<deployment-name>", { messages: ... });
 
 // More coming soon!
 ```
@@ -75,7 +71,7 @@ Want to see more examples? Check out the **[interactive docs](https://docs.unill
 To enable streaming, simply provide `stream: true` in the options object. Here is an example:
 
 ```ts
-const response = await uniLLM.createChatCompletion("openai/gpt-3.5-turbo", {
+const response = await unillm.createChatCompletion("openai/gpt-3.5-turbo", {
   messages: ...,
   stream: true
 });
@@ -87,7 +83,7 @@ Want to see more examples? Check out the **[interactive docs](https://docs.unill
 
 We welcome contributions from the community! Please feel free to submit pull requests or create issues for bugs or feature suggestions.
 
-If you want to contribute but not sure how, join our [Discord](https://pezzo.cc/discord) and we'll be happy to help you out!
+If you want to contribute but not sure how, join our [Discord](https://discord.gg/XcEVPePwn2) and we'll be happy to help you out!
 
 Please check out [CONTRIBUTING.md](CONTRIBUTING.md) before contributing.
 
