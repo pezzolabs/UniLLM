@@ -31,7 +31,8 @@ export default function RootLayout({
             <div className="h-full max-h-screen flex flex-col p-12">
               <div className="flex-grow overflow-y-auto">{children}</div>
               <footer className="h-14 mt-6 text-center flex items-center justify-center text-stone-400">
-                UniLLM 🦄 - Consume any LLM from any provider, using the OpenAI API
+                UniLLM 🦄 - Consume any LLM from any provider, using the OpenAI
+                API
                 <a
                   className="ml-2 font-semibold text-emerald-400 underline"
                   href="https://github.com/pezzolabs/UniLLM"
