@@ -92,10 +92,12 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
   }
 
   async createChatCompletionStreaming(
-    model: ModelTypes[Providers.AzureOpenAI],
+    _model: ModelTypes[Providers.AzureOpenAI],
     params: UnifiedCreateChatCompletionParamsStreaming,
   ): Promise<UnifiedCreateChatCompletionStreamResult> {
+    const [, model] = _model.split("/");
     const { baseParams } = this.processUnifiedParamsToAzureOpenAIFormat(params);
+
     const originalStreamResponse = this.client.listChatCompletions(
       model,
       params.messages,

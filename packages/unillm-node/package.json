@@ -1,6 +1,6 @@
 {
   "name": "unillm",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0",
   "main": "./index.ts",
   "type": "commonjs",
   "license": "MIT",
