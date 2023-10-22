@@ -36,7 +36,7 @@ describe("#createChatCompletion - Azure OpenAI", () => {
       ).not.toThrow();
     });
 
-    it.only("Should throw an error and return a unified error response", async () => {
+    it("Should throw an error and return a unified error response", async () => {
       let errorOccurred = false;
       try {
         await uniLLM.createChatCompletion(`azure:${deployment}`, {
