@@ -55,15 +55,15 @@ import { UniLLM } from 'unillm';
 const uniLLM = new UniLLM();
 
 // OpenAI
-const response = await uniLLM.createChatCompletion("openai:gpt-3.5-turbo", { messages: ... });
-const response = await uniLLM.createChatCompletion("openai:gpt-4", { messages: ... });
+const response = await uniLLM.createChatCompletion("openai/gpt-3.5-turbo", { messages: ... });
+const response = await uniLLM.createChatCompletion("openai/gpt-4", { messages: ... });
 
 // Anthropic
-const response = await uniLLM.createChatCompletion("anthropic:claude-2", { messages: ... });
-const response = await uniLLM.createChatCompletion("anthropic:claude-1-instant", { messages: ... });
+const response = await uniLLM.createChatCompletion("anthropic/claude-2", { messages: ... });
+const response = await uniLLM.createChatCompletion("anthropic/claude-1-instant", { messages: ... });
 
 // Azure OpenAI
-const response = await uniLLM.createChatCompletion("azure:openai", { messages: ... });
+const response = await uniLLM.createChatCompletion("azure/openai/<deployment-name>", { messages: ... });
 
 // More coming soon!
 ```
@@ -75,7 +75,7 @@ Want to see more examples? Check out the **[interactive docs](https://docs.unill
 To enable streaming, simply provide `stream: true` in the options object. Here is an example:
 
 ```ts
-const response = await uniLLM.createChatCompletion("openai:gpt-3.5-turbo", {
+const response = await uniLLM.createChatCompletion("openai/gpt-3.5-turbo", {
   messages: ...,
   stream: true
 });

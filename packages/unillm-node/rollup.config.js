@@ -31,6 +31,7 @@ module.exports = defineConfig({
       sourcemap: true,
     },
   ],
+  external: ["@dqbd/tiktoken"],
   plugins: [
     nodeResolve(),
     typescript2({
@@ -44,6 +45,7 @@ module.exports = defineConfig({
     generatePackageJson({
       baseContents: () => ({
         ...localPackageJson,
+        devDependencies: {},
         main: "./index.cjs.js",
         module: "./index.esm.js",
         types: "./types/packages/unillm-node/index.d.ts",

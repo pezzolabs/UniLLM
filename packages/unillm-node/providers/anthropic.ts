@@ -12,7 +12,7 @@ import {
 } from "../utils/types";
 import { UnifiedErrorResponse } from "../utils/UnifiedErrorResponse";
 
-import { Tiktoken } from "@dqbd/tiktoken/lite";
+import { Tiktoken } from "@dqbd/tiktoken";
 import cl100k_base from "@dqbd/tiktoken/encoders/cl100k_base.json";
 import { Readable } from "stream";
 import { BaseProvider } from "./baseProvider";

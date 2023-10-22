@@ -8,19 +8,19 @@ const llms: {
 }[] = [
   {
     name: "OpenAI GPT-3.5 Turbo",
-    value: LLMs["openai:gpt-3.5-turbo"],
+    value: LLMs["openai/gpt-3.5-turbo"],
   },
   {
     name: "OpenAI GPT-4",
-    value: LLMs["openai:gpt-4"],
+    value: LLMs["openai/gpt-4"],
   },
   {
     name: "Anthropic Claude-2",
-    value: LLMs["anthropic:claude-2"],
+    value: LLMs["anthropic/claude-2"],
   },
   {
     name: "Azure OpenAI",
-    value: LLMs["azure:gpt35turbo"],
+    value: LLMs["azure/openai/gpt35turbo"],
   },
 ];
 

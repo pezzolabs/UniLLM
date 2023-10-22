@@ -33,9 +33,10 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
   );
 
   async createChatCompletionNonStreaming(
-    model: ModelTypes[Providers.AzureOpenAI],
+    _model: ModelTypes[Providers.AzureOpenAI],
     params: UnifiedCreateChatCompletionParamsNonStreaming,
   ): Promise<UnifiedCreateChatCompletionNonStreamResult> {
+    const [, model] = _model.split("/");
     const { baseParams } = this.processUnifiedParamsToAzureOpenAIFormat(params);
 
     let nativeResult: ChatCompletions;
@@ -198,7 +199,7 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
 
     return new UnifiedErrorResponse(
       {
-        model: `azure:openai:${deployment}`,
+        model: `azure/openai/${deployment}`,
       },
       status,
       error,

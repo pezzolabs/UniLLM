@@ -11,7 +11,7 @@ describe("#createChatCompletion - Azure OpenAI", () => {
   describe("Non streaming", () => {
     it("Should return a valid chat completion response", async () => {
       const response = await uniLLM.createChatCompletion(
-        `azure:${deployment}`,
+        `azure/openai/${deployment}`,
         {
           ...testParams,
           stream: false,
@@ -24,7 +24,7 @@ describe("#createChatCompletion - Azure OpenAI", () => {
 
     it("Should return a valid function calling response", async () => {
       const response = await uniLLM.createChatCompletion(
-        `azure:${deployment}`,
+        `azure/openai/${deployment}`,
         {
           ...testParams,
           stream: false,
@@ -39,7 +39,7 @@ describe("#createChatCompletion - Azure OpenAI", () => {
     it("Should throw an error and return a unified error response", async () => {
       let errorOccurred = false;
       try {
-        await uniLLM.createChatCompletion(`azure:${deployment}`, {
+        await uniLLM.createChatCompletion(`azure/openai/${deployment}`, {
           ...testParams,
           stream: false,
           messages: [],
@@ -56,10 +56,13 @@ describe("#createChatCompletion - Azure OpenAI", () => {
 
   describe("Streaming", () => {
     it("Should return a valid iterable chat completion stream", async () => {
-      const stream = await uniLLM.createChatCompletion(`azure:${deployment}`, {
-        ...testParams,
-        stream: true,
-      });
+      const stream = await uniLLM.createChatCompletion(
+        `azure/openai/${deployment}`,
+        {
+          ...testParams,
+          stream: true,
+        },
+      );
 
       let testChunk: ChatCompletionChunk;
 

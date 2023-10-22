@@ -7,7 +7,7 @@ import { testParams, testFunctions } from "./utils/test-data.util";
 const uniLLM = new UniLLM();
 
 describe("#createChatCompletion - OpenAI", () => {
-  const model = "openai:gpt-3.5-turbo";
+  const model = "openai/gpt-3.5-turbo";
 
   describe("Non streaming", () => {
     it("Should return a valid chat completion response", async () => {

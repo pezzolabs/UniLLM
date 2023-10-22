@@ -7,7 +7,7 @@ import { testParams } from "./utils/test-data.util";
 const uniLLM = new UniLLM();
 
 describe("#createChatCompletion - Anthropic", () => {
-  const model = "anthropic:claude-2";
+  const model = "anthropic/claude-2";
 
   describe("Non streaming", () => {
     it("Should return a valid chat completion response", async () => {

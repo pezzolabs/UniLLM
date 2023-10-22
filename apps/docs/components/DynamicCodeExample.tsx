@@ -72,7 +72,7 @@ export function DynamicCodeExample({ children, defaultLLM, allowedProvider }: Pr
   const ref = useRef<any>();
   const setupRef = useRef<any>();
   const modelRef = useRef<any>();
-  const [selectedLLM, setSelectedLLM] = useState(defaultLLM ?? "openai:gpt-3.5-turbo");
+  const [selectedLLM, setSelectedLLM] = useState(defaultLLM ?? "openai/gpt-3.5-turbo");
 
   // Find the corresponding token from the DOM
   useEffect(() => {

@@ -1,19 +1,17 @@
 import OpenAI from "openai";
 import Anthropic from "@anthropic-ai/sdk";
 
-type AzurePrefix = `azure:${string}`;
-
 type StaticParamValues = {
-  "openai:gpt-3.5-turbo": "openai:gpt-3.5-turbo";
-  "openai:gpt-4": "openai:gpt-4";
-  "anthropic:claude-2": "anthropic:claude-2";
+  "openai/gpt-3.5-turbo": "openai/gpt-3.5-turbo";
+  "openai/gpt-4": "openai/gpt-4";
+  "anthropic/claude-2": "anthropic/claude-2";
 };
 
-type DynamicParamValues = {
-  [key in AzurePrefix]?: string;
+type AzureOpenAIDynamicValue = {
+  [key in `azure/openai/${string}`]?: string;
 };
 
-export type ModelParamValues = StaticParamValues & DynamicParamValues;
+export type ModelParamValues = StaticParamValues & AzureOpenAIDynamicValue;
 
 export enum Providers {
   OpenAI,
@@ -24,7 +22,7 @@ export enum Providers {
 export type ModelTypes = {
   [Providers.OpenAI]: OpenAI.CompletionCreateParams["model"];
   [Providers.Anthropic]: Anthropic.CompletionCreateParams["model"];
-  [Providers.AzureOpenAI]: string; // deployment name
+  [Providers.AzureOpenAI]: string;
 };
 
 export type UnifiedCreateChatCompletionParamsBase = Omit<

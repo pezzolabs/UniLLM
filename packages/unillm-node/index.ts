@@ -38,7 +38,8 @@ export class UniLLM {
   ):
     | Promise<UnifiedCreateChatCompletionNonStreamResult>
     | Promise<UnifiedCreateChatCompletionStreamResult> {
-    const [providerName, model] = providerAndModel.split(":");
+    const [providerName, ...rest] = providerAndModel.split("/");
+    const model = rest.join("/");
     const provider = providers[providerName];
 
     if (!provider) {

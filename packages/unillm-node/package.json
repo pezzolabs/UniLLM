@@ -1,6 +1,6 @@
 {
   "name": "unillm",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "main": "./index.ts",
   "type": "commonjs",
   "license": "MIT",
@@ -14,7 +14,8 @@
     "lint": "eslint .",
     "test": "vitest --coverage",
     "format": "prettier --write .",
-    "build": "rimraf dist && rollup -c"
+    "build": "rimraf dist && rollup -c",
+    "build:watch": "rimraf dist && rollup -c --watch"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
@@ -41,9 +42,9 @@
     "@anthropic-ai/sdk": "^0.6.2",
     "@azure/openai": "^1.0.0-beta.6",
     "@dqbd/tiktoken": "^1.0.7",
+    "llm-repo": "*",
     "node-fetch": "^3.3.2",
-    "openai": "^4.8.0",
-    "llm-repo": "*"
+    "openai": "^4.8.0"
   },
   "keywords": [
     "llm",

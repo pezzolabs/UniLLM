@@ -41,27 +41,27 @@ const azureSetup = `  Make sure the following environment variables are set:
 export const models: {
   [key: string]: ModelDefinition;
 } = {
-  "openai:gpt-3.5-turbo": {
+  "openai/gpt-3.5-turbo": {
     provider: "openai",
     name: "GPT-3.5 Turbo",
     setup: openaiSetup,
   },
-  "openai:gpt-4": {
+  "openai/gpt-4": {
     provider: "openai",
     name: "GPT-4",
     setup: openaiSetup,
   },
-  "anthropic:claude-2": {
+  "anthropic/claude-2": {
     provider: "anthropic",
     name: "Claude 2",
     setup: anthropicSetup,
   },
-  "anthropic:claude-1-instant": {
+  "anthropic/claude-1-instant": {
     provider: "anthropic",
     name: "Claude 1 Instant",
     setup: anthropicSetup,
   },
-  "azure:openai": {
+  "azure/openai": {
     provider: "azure",
     name: "Azure OpenAI",
     setup: azureSetup,
