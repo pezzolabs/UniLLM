@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.nextra-code-block {
+  > pre {
+    @apply rounded-md;
+    @apply bg-stone-800 !important;
+    @apply border;
+    @apply border-stone-700;
+  }
+}
+
 .dynamic-code-example {
   .nextra-code-block {
     @apply bg-stone-900;
