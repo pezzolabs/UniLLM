@@ -3,7 +3,11 @@ import type {
   ChatCompletion,
   ChatCompletionChunk,
 } from "openai/resources/chat";
+
 import { UnifiedCreateChatCompletionNonStreamResult } from "../../utils/types";
+import {
+  UnifiedErrorResponse,
+} from "../../utils/UnifiedErrorResponse";
 
 /**
  * Validates an object against the OpenAI ChatCompletion response schema.
@@ -92,4 +96,29 @@ export function validateOpenAIChatCompletionChunk(obj: ChatCompletionChunk) {
   });
 
   schema.parse(obj);
+}
+
+export function validateOpenAIChatCompletionErrorResponse(
+  error: UnifiedErrorResponse,
+) {
+  const schema: z.ZodType<UnifiedErrorResponse> = z.strictObject({
+    name: z.string(),
+    message: z.string(),
+    status: z.number(),
+    headers: z.record(z.string()),
+    param: z.string().nullable(),
+    code: z.string().nullable(),
+    type: z.string(),
+    error: z.strictObject({
+      message: z.string(),
+      type: z.string(),
+      param: z.string().nullable(),
+      code: z.string().nullable(),
+    }),
+    metadata: z.strictObject({
+      model: z.string(),
+    }),
+  });
+
+  schema.parse(error);
 }

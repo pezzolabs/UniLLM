@@ -17,6 +17,14 @@ import {
 
 import { Readable } from "stream";
 import { BaseProvider } from "./baseProvider";
+import { UnifiedErrorResponse } from "../utils/UnifiedErrorResponse";
+
+type AzureOpenAIError = {
+  message: string;
+  type: string;
+  param: string | null;
+  code: string | null;
+};
 
 export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
   private client = new OpenAIClient(
@@ -30,14 +38,28 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
   ): Promise<UnifiedCreateChatCompletionNonStreamResult> {
     const { baseParams } = this.processUnifiedParamsToAzureOpenAIFormat(params);
 
-    const nativeResult = await this.client.getChatCompletions(
-      model,
-      params.messages,
-      {
-        ...baseParams,
-        stream: false,
-      },
-    );
+    let nativeResult: ChatCompletions;
+
+    try {
+      nativeResult = await this.client.getChatCompletions(
+        model,
+        params.messages,
+        {
+          ...baseParams,
+          stream: false,
+        },
+      );
+    } catch (_error: any) {
+      if (!_error.type) {
+        throw _error;
+      }
+
+      const error = this.getUnifiedErrorFromAzureOpenAIError(
+        _error as AzureOpenAIError,
+        model,
+      );
+      throw error;
+    }
 
     const choices: OpenAI.Chat.Completions.ChatCompletion["choices"] =
       nativeResult.choices.map(
@@ -141,5 +163,30 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
     })();
 
     return openaiStream;
+  }
+
+  private getUnifiedErrorFromAzureOpenAIError(
+    error: AzureOpenAIError,
+    model: ModelTypes[Providers.AzureOpenAI],
+  ): UnifiedErrorResponse {
+    let status;
+
+    switch (error.type) {
+      case "invalid_request_error":
+        status = 400;
+        break;
+      default:
+        status = 500;
+    }
+
+    return new UnifiedErrorResponse(
+      {
+        model,
+      },
+      status,
+      error,
+      error.message,
+      {},
+    );
   }
 }

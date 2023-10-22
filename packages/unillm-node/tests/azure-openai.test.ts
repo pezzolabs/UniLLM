@@ -35,6 +35,23 @@ describe("#createChatCompletion - Azure OpenAI", () => {
         utils.validateOpenAIChatCompletionResponse(response),
       ).not.toThrow();
     });
+
+    it("Should throw an error and return a unified error response", async () => {
+      let errorOccurred = false;
+      try {
+        await uniLLM.createChatCompletion(`azure:${deployment}`, {
+          ...testParams,
+          stream: false,
+          messages: [],
+        });
+      } catch (error) {
+        errorOccurred = true;
+        expect(() =>
+          utils.validateOpenAIChatCompletionErrorResponse(error),
+        ).not.toThrow();
+      }
+      expect(errorOccurred).toBeTruthy();
+    });
   });
 
   describe("Streaming", () => {

@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import Anthropic from "@anthropic-ai/sdk";
+import { APIError } from "@anthropic-ai/sdk/error";
 import { Stream } from "@anthropic-ai/sdk/streaming";
 import {
   UnifiedCreateChatCompletionNonStreamResult,
@@ -9,6 +10,7 @@ import {
   Providers,
   ModelTypes,
 } from "../utils/types";
+import { UnifiedErrorResponse } from "../utils/UnifiedErrorResponse";
 
 import { Tiktoken } from "@dqbd/tiktoken/lite";
 import cl100k_base from "@dqbd/tiktoken/encoders/cl100k_base.json";
@@ -25,11 +27,30 @@ export class AnthropicProvider extends BaseProvider<Providers.Anthropic> {
     const { baseParams, prompt } =
       this.processUnifiedParamsToAnthropicFormat(params);
 
-    const nativeResult = await this.anthropic.completions.create({
-      ...baseParams,
-      model,
-      stream: false,
-    });
+    let nativeResult: Anthropic.Completions.Completion;
+
+    try {
+      nativeResult = await this.anthropic.completions.create({
+        ...baseParams,
+        model,
+        stream: false,
+      });
+    } catch (_error: unknown) {
+      if (!(_error instanceof APIError)) {
+        throw _error;
+      }
+
+      const error = _error as APIError;
+      throw new UnifiedErrorResponse(
+        {
+          model,
+        },
+        error.status,
+        (error.error as any).error,
+        error.message,
+        error.headers,
+      );
+    }
 
     const finishReasonMapping: {
       [

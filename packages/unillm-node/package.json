@@ -42,7 +42,8 @@
     "@azure/openai": "^1.0.0-beta.6",
     "@dqbd/tiktoken": "^1.0.7",
     "node-fetch": "^3.3.2",
-    "openai": "^4.8.0"
+    "openai": "^4.8.0",
+    "llm-repo": "*"
   },
   "keywords": [
     "llm",

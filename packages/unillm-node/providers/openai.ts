@@ -8,6 +8,8 @@ import {
   ModelTypes,
 } from "../utils/types";
 import { BaseProvider } from "./baseProvider";
+import { APIError } from "openai/error";
+import { UnifiedErrorResponse } from "../utils/UnifiedErrorResponse";
 
 export class OpenAIProvider extends BaseProvider<Providers.OpenAI> {
   private openai = new OpenAI();
@@ -16,13 +18,30 @@ export class OpenAIProvider extends BaseProvider<Providers.OpenAI> {
     model: ModelTypes[Providers.OpenAI],
     params: UnifiedCreateChatCompletionParamsNonStreaming,
   ): Promise<UnifiedCreateChatCompletionNonStreamResult> {
-    const response = await this.openai.chat.completions.create({
-      ...params,
-      model,
-      stream: false,
-    });
+    try {
+      const response = await this.openai.chat.completions.create({
+        ...params,
+        model,
+        stream: false,
+      });
 
-    return response;
+      return response;
+    } catch (_error: unknown) {
+      if (!(_error instanceof APIError)) {
+        throw _error;
+      }
+
+      const error = _error as APIError;
+      throw new UnifiedErrorResponse(
+        {
+          model,
+        },
+        error.status,
+        error.error,
+        error.message,
+        error.headers,
+      );
+    }
   }
 
   async createChatCompletionStreaming(
