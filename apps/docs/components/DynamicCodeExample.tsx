@@ -95,17 +95,13 @@ export function DynamicCodeExample({ children, defaultLLM, allowedProvider }: Pr
     if (setupRef.current && modelRef.current) {
       const model = models[selectedLLM];
 
-      modelRef.current.innerText = `"${selectedLLM}"`;
+      modelRef.current.innerText = `"${model.modelTokenOverride ?? selectedLLM}"`;
       setupRef.current.innerText = model.setup;
       setupRef.current.style.color = "var(--shiki-token-comment)";
     }
   }, [selectedLLM]);
 
   const handleSelectChange = (value: string) => {
-    if (modelRef.current) {
-      modelRef.current.innerText = `"${value}"`;
-    }
-
     setSelectedLLM(value);
   }
 

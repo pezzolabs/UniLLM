@@ -22,6 +22,7 @@ export type ModelDefinition = {
   provider: keyof typeof providers;
   name: string;
   setup: string;
+  modelTokenOverride?: string;
 };
 
 const openaiSetup = `  Make sure the following environment variables are set:
@@ -35,7 +36,6 @@ const anthropicSetup = `  Make sure the following environment variables are set:
 const azureSetup = `  Make sure the following environment variables are set:
   AZURE_OPENAI_ENDPOINT   - your Azure OpenAI endpoint
   AZURE_OPENAI_API_KEY    - your Azure OpenAI API key
-  AZURE_OPENAI_DEPLOYMENT - your Azure OpenAI deployment name
 `;
 
 export const models: {
@@ -65,6 +65,7 @@ export const models: {
     provider: "azure",
     name: "Azure OpenAI",
     setup: azureSetup,
+    modelTokenOverride: "azure/openai/<deployment-name>",
   },
 };
 
