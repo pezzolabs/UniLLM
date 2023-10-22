@@ -4,6 +4,9 @@
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
+  "scripts": {
+    "format": "prettier . --write"
+  },
   "devDependencies": {
     "eslint-config-custom": "*",
     "tsconfig": "*"

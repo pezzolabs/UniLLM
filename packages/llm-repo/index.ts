@@ -1,6 +1,6 @@
 export type ProviderDefinition = {
   name: string;
-}
+};
 
 export const providers: {
   [key: string]: ProviderDefinition;
@@ -22,7 +22,7 @@ export type ModelDefinition = {
   provider: keyof typeof providers;
   name: string;
   setup: string;
-}
+};
 
 const openaiSetup = `  Make sure the following environment variables are set:
   OPENAI_API_KEY - your OpenAI API key
@@ -39,32 +39,32 @@ const azureSetup = `  Make sure the following environment variables are set:
 `;
 
 export const models: {
-  [key: string]: ModelDefinition
+  [key: string]: ModelDefinition;
 } = {
   "openai:gpt-3.5-turbo": {
     provider: "openai",
     name: "GPT-3.5 Turbo",
-    setup: openaiSetup
+    setup: openaiSetup,
   },
   "openai:gpt-4": {
     provider: "openai",
     name: "GPT-4",
-    setup: openaiSetup
+    setup: openaiSetup,
   },
   "anthropic:claude-2": {
     provider: "anthropic",
     name: "Claude 2",
-    setup: anthropicSetup
+    setup: anthropicSetup,
   },
   "anthropic:claude-1-instant": {
     provider: "anthropic",
     name: "Claude 1 Instant",
-    setup: anthropicSetup
+    setup: anthropicSetup,
   },
   "azure:openai": {
     provider: "azure",
     name: "Azure OpenAI",
-    setup: azureSetup
+    setup: azureSetup,
   },
 };
 

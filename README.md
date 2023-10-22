@@ -28,6 +28,7 @@
 </p>
 
 # Benefits
+
 - ✨ Integrate with any provider and model using the OpenAI API
 - 💬 Consistent chatCompletion responses and logs across all models and providers
 - 💯 Type safety across all providers and models
@@ -43,7 +44,6 @@
 ## 💬 Chat Completions
 
 With UniLLM, you can use chat completions even for providers/models that don't natively support it (e.g. Anthropic).
-
 
 ```bash
 npm i unillm
@@ -67,12 +67,13 @@ const response = await uniLLM.createChatCompletion("azure:openai", { messages: .
 
 // More coming soon!
 ```
-Want to see more examples? Check out the **[interactive docs](https://docs.unillm.ai)**.
 
+Want to see more examples? Check out the **[interactive docs](https://docs.unillm.ai)**.
 
 ## ⚡️ Streaming
 
 To enable streaming, simply provide `stream: true` in the options object. Here is an example:
+
 ```ts
 const response = await uniLLM.createChatCompletion("openai:gpt-3.5-turbo", {
   messages: ...,
