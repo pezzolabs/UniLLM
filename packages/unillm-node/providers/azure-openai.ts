@@ -20,10 +20,10 @@ import { BaseProvider } from "./baseProvider";
 import { UnifiedErrorResponse } from "../utils/UnifiedErrorResponse";
 
 type AzureOpenAIError = {
-  message: string;
-  type: string;
-  param: string | null;
-  code: string | null;
+  message?: string;
+  type?: string;
+  param?: string | null;
+  code?: string | null;
 };
 
 export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
@@ -50,10 +50,6 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
         },
       );
     } catch (_error: any) {
-      if (!_error.type) {
-        throw _error;
-      }
-
       const error = this.getUnifiedErrorFromAzureOpenAIError(
         _error as AzureOpenAIError,
         model,
@@ -167,21 +163,42 @@ export class AzureOpenAIProvider extends BaseProvider<Providers.AzureOpenAI> {
 
   private getUnifiedErrorFromAzureOpenAIError(
     error: AzureOpenAIError,
-    model: ModelTypes[Providers.AzureOpenAI],
+    deployment: ModelTypes[Providers.AzureOpenAI],
   ): UnifiedErrorResponse {
-    let status;
+    let status = 500;
 
-    switch (error.type) {
-      case "invalid_request_error":
-        status = 400;
-        break;
-      default:
-        status = 500;
+    // Sometimes Azure returns a status code
+    if (typeof error.code === "number") {
+      status = error.code;
+    } else if (typeof error.code === "string") {
+      if (!isNaN(Number(error.code))) {
+        status = Number(error.code);
+      } else {
+        // Sometimes it returns strings
+        switch (error.code) {
+          case "DeploymentNotFound":
+            status = 404;
+            break;
+
+          // Need to handle more cases, but this isn't documented anywhere.
+        }
+      }
+    }
+
+    // And sometime it will return the native OpenAI error type, if endpoint and deployment exist
+    if (error.type) {
+      switch (error.type) {
+        case "invalid_request_error":
+          status = 400;
+          break;
+
+        // Need to handle more cases, but this isn't documented anywhere.
+      }
     }
 
     return new UnifiedErrorResponse(
       {
-        model,
+        model: `azure:openai:${deployment}`,
       },
       status,
       error,

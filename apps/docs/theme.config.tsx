@@ -9,7 +9,7 @@ const config: DocsThemeConfig = {
     link: 'https://github.com/pezzolabs/unillm',
   },
   chat: {
-    link: 'https://pezzo.cc/discord',
+    link: 'https://discord.gg/XcEVPePwn2',
   },
   docsRepositoryBase: 'https://github.com/pezzolabs/unillm/tree/main/apps/docs',
   footer: {
