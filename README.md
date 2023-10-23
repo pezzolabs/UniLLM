@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">
-  <a href="https://docs.unillm.ai/#gh-light-mode-only" target="_blank">
+  <a href="https://docs.unillm.ai/" target="_blank">
     <img src="https://cdn.pezzo.ai/unillm/logo-light-mode.svg" alt="logo" width="280">
   </a>
   </h1>
