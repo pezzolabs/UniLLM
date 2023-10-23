@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>UniLLM is a library that allows you to call any LLM using the OpenAI API, with 100% type safety.</strong>
+  <strong>UniLLM allows you to call any LLM using the OpenAI API, with 100% type safety.</strong>
 </p>
 
 <p align="center">
