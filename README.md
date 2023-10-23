@@ -1,7 +1,7 @@
 <p align="center">
   <h1 align="center">
   <a href="https://docs.unillm.ai/#gh-light-mode-only" target="_blank">
-    <img src=".github/assets/logo-light-mode.svg" alt="logo" width="280">
+    <img src="https://cdn.pezzo.ai/unillm/logo-light-mode.svg" alt="logo" width="280">
   </a>
   </h1>
 </p>
@@ -21,6 +21,10 @@
 <a href="https://www.npmjs.com/package/unillm" target="_blank">
   <img src="https://img.shields.io/badge/npm-unillm-green">
 </a>
+</p>
+
+<p align="center">
+  <img src="https://cdn.pezzo.ai/unillm/animated-demo.gif" width="540" />
 </p>
 
 # Benefits
